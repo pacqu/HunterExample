@@ -16,4 +16,11 @@ setInterval(function(){
       },
       100000);
     }
+    data.forEach(function(mention){
+      parseMention(mention,T,genius);
+    });
+  });
 },5000);
+function parseMention(mention,T,genius){
+  console.log(mention);
+}
