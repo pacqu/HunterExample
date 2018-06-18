@@ -33,6 +33,16 @@ function parseMention(mention,T,genius){
          var newTweet = tweetAt + ' ' + song.full_title
          + ' ' + song.primary_artist.name + ' ' + song.url;
          T.post('statuses/update', { status: newTweet }, function(err, data, response) {
+           var newTweetId = data.id_str;
+           T.post('statuses/retweet/:id', { id: newTweetId} , function(){
+             T.post('favorites/create', { id: newTweetId } )
+           })
+         })
+       })
+     })
+   }
+ };
+}
 function removeMention(tweet){
   tweet = tweet.replace('@SpiritLyricBot','')
   return tweet;
