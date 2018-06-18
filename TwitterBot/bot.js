@@ -29,4 +29,7 @@ function parseMention(mention,T,genius){
       T.post('statuses/retweet/:id', { id: mention.id_str } , function(){
         var lyric = removeMention(mention.text);
         genius.search(lyric).then(function(response) {
+function removeMention(tweet){
+  tweet = tweet.replace('@SpiritLyricBot','')
+  return tweet;
 }
