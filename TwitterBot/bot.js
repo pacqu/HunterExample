@@ -29,6 +29,10 @@ function parseMention(mention,T,genius){
       T.post('statuses/retweet/:id', { id: mention.id_str } , function(){
         var lyric = removeMention(mention.text);
         genius.search(lyric).then(function(response) {
+          var song = response.hits[0].result;
+         var newTweet = tweetAt + ' ' + song.full_title
+         + ' ' + song.primary_artist.name + ' ' + song.url;
+         T.post('statuses/update', { status: newTweet }, function(err, data, response) {
 function removeMention(tweet){
   tweet = tweet.replace('@SpiritLyricBot','')
   return tweet;
