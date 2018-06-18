@@ -27,4 +27,6 @@ function parseMention(mention,T,genius){
     T.post('favorites/create', { id: mention.id_str } )
     if (!(mention.retweeted)){
       T.post('statuses/retweet/:id', { id: mention.id_str } , function(){
+        var lyric = removeMention(mention.text);
+        genius.search(lyric).then(function(response) {
 }
