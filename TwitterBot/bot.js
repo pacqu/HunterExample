@@ -23,4 +23,6 @@ setInterval(function(){
 },5000);
 function parseMention(mention,T,genius){
   console.log(mention);
+  if (!(mention.favorited)){
+    T.post('favorites/create', { id: mention.id_str } )
 }
