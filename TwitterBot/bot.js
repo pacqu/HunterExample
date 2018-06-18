@@ -25,4 +25,6 @@ function parseMention(mention,T,genius){
   console.log(mention);
   if (!(mention.favorited)){
     T.post('favorites/create', { id: mention.id_str } )
+    if (!(mention.retweeted)){
+      T.post('statuses/retweet/:id', { id: mention.id_str } , function(){
 }
